@@ -10,12 +10,15 @@
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "@oclif/plugin-help": "^2"
+    "@oclif/plugin-help": "^2",
+    "cli-ux": "^5.4.5",
+    "dotenv": "^8.2.0",
+    "pg": "^7.18.2",
+    "slonik": "^22.4.4",
+    "slonik-sql-tag-raw": "^1.0.2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
-    "eslint": "^5.13",
-    "eslint-config-oclif": "^3.1",
     "globby": "^10",
     "standard": "^14.3.3"
   },
@@ -39,7 +42,10 @@
     "bin": "gtfsimport",
     "plugins": [
       "@oclif/plugin-help"
-    ]
+    ],
+    "hooks": {
+      "init": "./src/hooks/init/loadEnv"
+    }
   },
   "repository": "danielhep/gtfsimport",
   "scripts": {

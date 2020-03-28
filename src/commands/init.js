@@ -1,10 +1,18 @@
-const {Command, flags} = require('@oclif/command')
+const { Command, flags } = require('@oclif/command')
+const { cli } = require('cli-ux')
+const { promisify } = require('util')
+const exec = promisify(require('child_process').exec)
 
 class InitCommand extends Command {
-  async run() {
-    const {flags} = this.parse(InitCommand)
-    const name = flags.name || 'world'
-    this.log(`hello ${name} from /home/danielhep/Git/Rapid/gtfs-sql-importer/gtfsimport/src/commands/init.js`)
+  async run () {
+    const { flags } = this.parse(InitCommand)
+    let db = flags.db
+    if (!flags.db) {
+      db = await cli.prompt('No database specified. What is your database URI?')
+    }
+    this.log('Creating database schema.')
+    const res = await exec('cd gtfs-sql-importer && make init', { env: process.env })
+    // console.log(res)
   }
 }
 
@@ -13,7 +21,8 @@ Initializes the database with tables necessary for importing a GTFS feed.
 `
 
 InitCommand.flags = {
-  name: flags.string({char: 'n', description: 'name to print'}),
+  db: flags.string({ char: 'd', description: 'Postgres DB URI', env: 'DB_URI' }),
+  schemaName: flags.string({ char: 's', description: 'Set the name of the schema.', default: 'gtfs' })
 }
 
 module.exports = InitCommand

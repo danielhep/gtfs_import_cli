@@ -31,6 +31,7 @@ USAGE
 * [`gtfsimport hello`](#gtfsimport-hello)
 * [`gtfsimport help [COMMAND]`](#gtfsimport-help-command)
 * [`gtfsimport init`](#gtfsimport-init)
+* [`gtfsimport load`](#gtfsimport-load)
 
 ## `gtfsimport hello`
 
@@ -69,11 +70,29 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3
 
 ## `gtfsimport init`
 
-Describe the command here
+Initializes the database with tables necessary for importing a GTFS feed.
 
 ```
 USAGE
   $ gtfsimport init
+
+OPTIONS
+  -d, --db=db                  Postgres DB URI
+  -s, --schemaName=schemaName  [default: gtfs] Set the name of the schema.
+
+DESCRIPTION
+  Initializes the database with tables necessary for importing a GTFS feed.
+```
+
+_See code: [src/commands/init.js](https://github.com/danielhep/gtfsimport/blob/v0.0.1/src/commands/init.js)_
+
+## `gtfsimport load`
+
+Describe the command here
+
+```
+USAGE
+  $ gtfsimport load
 
 OPTIONS
   -n, --name=name  name to print
@@ -83,5 +102,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/init.js](https://github.com/danielhep/gtfsimport/blob/v0.0.1/src/commands/init.js)_
+_See code: [src/commands/load.js](https://github.com/danielhep/gtfsimport/blob/v0.0.1/src/commands/load.js)_
 <!-- commandsstop -->
