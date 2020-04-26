@@ -28,18 +28,18 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`gtfsimport hello`](#gtfsimport-hello)
+* [`gtfsimport gen`](#gtfsimport-gen)
 * [`gtfsimport help [COMMAND]`](#gtfsimport-help-command)
 * [`gtfsimport init`](#gtfsimport-init)
-* [`gtfsimport load`](#gtfsimport-load)
+* [`gtfsimport load GTFS`](#gtfsimport-load-gtfs)
 
-## `gtfsimport hello`
+## `gtfsimport gen`
 
 Describe the command here
 
 ```
 USAGE
-  $ gtfsimport hello
+  $ gtfsimport gen
 
 OPTIONS
   -n, --name=name  name to print
@@ -49,7 +49,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/hello.js](https://github.com/danielhep/gtfsimport/blob/v0.0.1/src/commands/hello.js)_
+_See code: [src/commands/gen.js](https://github.com/danielhep/gtfsimport/blob/v0.0.1/src/commands/gen.js)_
 
 ## `gtfsimport help [COMMAND]`
 
@@ -77,8 +77,11 @@ USAGE
   $ gtfsimport init
 
 OPTIONS
-  -d, --db=db                  Postgres DB URI
+  -d, --db=db                  Database.
+  -h, --host=host              Database host.
+  -p, --password=password      Database password.
   -s, --schemaName=schemaName  [default: gtfs] Set the name of the schema.
+  -u, --user=user              Database user.
 
 DESCRIPTION
   Initializes the database with tables necessary for importing a GTFS feed.
@@ -86,16 +89,19 @@ DESCRIPTION
 
 _See code: [src/commands/init.js](https://github.com/danielhep/gtfsimport/blob/v0.0.1/src/commands/init.js)_
 
-## `gtfsimport load`
+## `gtfsimport load GTFS`
 
 Describe the command here
 
 ```
 USAGE
-  $ gtfsimport load
+  $ gtfsimport load GTFS
 
 OPTIONS
-  -n, --name=name  name to print
+  -d, --db=db              Database.
+  -h, --host=host          Database host.
+  -p, --password=password  Database password.
+  -u, --user=user          Database user.
 
 DESCRIPTION
   ...

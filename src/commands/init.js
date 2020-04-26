@@ -10,8 +10,16 @@ class InitCommand extends Command {
     if (!flags.db) {
       db = await cli.prompt('No database specified. What is your database URI?')
     }
+
     this.log('Creating database schema.')
-    const res = await exec('cd gtfs-sql-importer && make init', { env: process.env })
+    const res = await exec('cd gtfs-sql-importer && make init', {
+      env: {
+        PGHOST: flags.host,
+        PGUSER: flags.user,
+        PGPASSWORD: flags.password,
+        PGDATABASE: flags.db
+      }
+    })
     // console.log(res)
   }
 }
@@ -21,7 +29,10 @@ Initializes the database with tables necessary for importing a GTFS feed.
 `
 
 InitCommand.flags = {
-  db: flags.string({ char: 'd', description: 'Postgres DB URI', env: 'DB_URI' }),
+  host: flags.string({ char: 'h', description: 'Database host.', env: 'PGHOST' }),
+  user: flags.string({ char: 'u', description: 'Database user.', env: 'PGUSER' }),
+  password: flags.string({ char: 'p', description: 'Database password.', env: 'PGPASSWORD' }),
+  db: flags.string({ char: 'd', description: 'Database.', env: 'PGDATABASE' }),
   schemaName: flags.string({ char: 's', description: 'Set the name of the schema.', default: 'gtfs' })
 }
 

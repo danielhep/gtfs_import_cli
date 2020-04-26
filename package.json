@@ -6,6 +6,9 @@
   "bin": {
     "gtfsimport": "./bin/run"
   },
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "bugs": "https://github.com/danielhep/gtfsimport/issues",
   "dependencies": {
     "@oclif/command": "^1",
@@ -19,6 +22,7 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
+    "babel-eslint": "^10.1.0",
     "globby": "^10",
     "standard": "^14.3.3"
   },
